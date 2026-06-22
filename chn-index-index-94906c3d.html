@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>再次遇见 · 澳客</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fdf1e8 0%, #f8e3d0 40%, #f0d5be 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2rem 1.2rem;
+      line-height: 1.7;
+      color: #3a2e28;
+    }
+
+    .card {
+      max-width: 780px;
+      width: 100%;
+      background: rgba(255, 250, 244, 0.85);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-radius: 40px;
+      padding: 2.8rem 2.5rem;
+      box-shadow: 0 18px 36px -12px rgba(140, 80, 50, 0.2), 0 4px 12px rgba(0,0,0,0.02);
+      border: 1px solid rgba(255, 240, 228, 0.7);
+      transition: box-shadow 0.2s ease;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.2rem 0.8rem; }
+      .card { padding: 2rem 1.5rem; border-radius: 28px; }
+    }
+
+    .tagline {
+      font-size: 1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #b17e64;
+      margin-bottom: 0.4rem;
+      font-weight: 400;
+      opacity: 0.8;
+      border-left: 3px solid #dbb6a0;
+      padding-left: 0.75rem;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      font-weight: 450;
+      letter-spacing: -0.02em;
+      color: #2f221b;
+      margin: 0.5rem 0 1.5rem 0;
+      line-height: 1.2;
+    }
+
+    .story-intro {
+      font-size: 1.1rem;
+      margin-bottom: 1.8rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px dashed #ecdacf;
+    }
+
+    .story-intro p {
+      margin-bottom: 1rem;
+    }
+
+    .feature-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 1.8rem;
+      margin: 2.2rem 0 2rem 0;
+    }
+
+    .feature-item {
+      flex: 1 1 200px;
+      background: rgba(245, 231, 221, 0.5);
+      padding: 1rem 1.2rem;
+      border-radius: 24px;
+      box-shadow: inset 0 1px 2px rgba(255,245,235,0.8), 0 2px 8px rgba(160, 100, 70, 0.06);
+      transition: all 0.15s ease;
+    }
+
+    .feature-item:hover {
+      background: rgba(245, 231, 221, 0.7);
+      transform: translateY(-2px);
+    }
+
+    .feature-item h3 {
+      font-size: 1.1rem;
+      font-weight: 480;
+      margin-bottom: 0.3rem;
+      color: #4d362c;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .feature-item p {
+      font-size: 0.95rem;
+      color: #5c4a40;
+    }
+
+    .gentle-cta {
+      background: #f3e2d6;
+      border-radius: 50px;
+      padding: 0.8rem 1.8rem;
+      display: inline-block;
+      margin: 1.2rem 0 0 0;
+      border: 1px solid rgba(200, 160, 140, 0.3);
+      box-shadow: 0 4px 12px rgba(180, 120, 80, 0.08);
+    }
+
+    .gentle-cta a {
+      color: #3e2d25;
+      text-decoration: none;
+      font-weight: 460;
+      font-size: 1.05rem;
+      letter-spacing: 0.3px;
+      position: relative;
+      transition: color 0.15s;
+    }
+
+    .gentle-cta a::after {
+      content: " →";
+      opacity: 0.5;
+      transition: opacity 0.15s, transform 0.15s;
+      display: inline-block;
+    }
+
+    .gentle-cta a:hover {
+      color: #6b4b3a;
+    }
+
+    .gentle-cta a:hover::after {
+      opacity: 1;
+      transform: translateX(3px);
+    }
+
+    .closing-note {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #ebd7cb;
+      font-size: 0.98rem;
+      color: #5a4940;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.8rem;
+    }
+
+    .closing-note .small-meta {
+      font-size: 0.85rem;
+      color: #aa8a78;
+    }
+
+    .faq-hint {
+      margin-top: 2rem;
+      background: rgba(235, 214, 200, 0.25);
+      border-radius: 28px;
+      padding: 1.2rem 1.6rem;
+      font-size: 0.95rem;
+    }
+
+    .faq-hint summary {
+      cursor: pointer;
+      font-weight: 440;
+      color: #4f3b30;
+      padding: 0.2rem 0;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-hint summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-hint summary::after {
+      content: "▼";
+      font-size: 0.75rem;
+      color: #b28e78;
+      margin-left: 0.5rem;
+    }
+
+    .faq-hint[open] summary::after {
+      content: "▲";
+    }
+
+    .faq-hint .faq-content {
+      margin-top: 0.6rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid #e3cec0;
+      color: #4d3e36;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="tagline">✦ 再访 · 收藏 · 持续</div>
+    <h1>后来，还是回到这里</h1>
+
+    <div class="story-intro">
+      <p>有些地方，第一次是偶然，第二次是习惯。最初打开 <a href="https://chn-index-aoke.com" style="color:#6b4b3a; text-decoration: underline; text-underline-offset: 3px; font-weight: 470;">澳客</a> 的那个下午，我并没想过会再回来。可隔了几天，又点开了那个链接——页面加载时，熟悉的色调和布局让人安心。就这样，它慢慢成了我浏览器书签栏里，一个安静的存在。</p>
+      <p>没有推送，没有弹窗。每次访问，都像推开一扇旧门，里面的内容依然在那，等着你再次翻看。后来我索性把它收藏起来，偶尔想起就点开，页面不大，但总觉得还有东西没读完。</p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h3>📎 收藏的理由</h3>
+        <p>不占内存，不打扰。一个书签就能留住，适合那些想回看又不愿被信息淹没的人。</p>
+      </div>
+      <div class="feature-item">
+        <h3>🔄 持续的关注</h3>
+        <p>不是每天都需要，但隔一阵子再去，内容还在，节奏没变。像老朋友，不必常联系，心里有数。</p>
+      </div>
+      <div class="feature-item">
+        <h3>🧭 再次访问</h3>
+        <p>第二次、第三次访问时，页面加载更快了（也许是缓存，也许是熟悉）。方向感清晰，不会迷路。</p>
+      </div>
+    </div>
+
+    <div class="gentle-cta">
+      <a href="https://chn-index-aoke.com">澳客</a>
+    </div>
+
+    <div class="faq-hint">
+      <details>
+        <summary>一些常被问到的 · 简短摘要</summary>
+        <div class="faq-content">
+          <span>—— 页面是否适配手机？基本适配，阅读体验尚可。</span>
+          <span>—— 需要注册或登录吗？不需要，直接访问即可。</span>
+          <span>—— 内容更新频率？稳定，但不喧哗。</span>
+        </div>
+      </details>
+    </div>
+
+    <div class="closing-note">
+      <span>故事还在继续，书签栏里总有它的位置。</span>
+      <span class="small-meta">—— 温和 · 记录</span>
+    </div>
+  </div>
+</body>
+</html>
